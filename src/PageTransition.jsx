@@ -2,10 +2,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useLocation } from "react-router-dom";
 
 const defaultBlocks = ["#0d1a3a", "#1a6aff", "#7dd4fc"];
+const MotionDiv = motion.div;
 
 function DefaultTransition() {
   return defaultBlocks.map((color, i) => (
-    <motion.div
+    <MotionDiv
       key={i}
       style={{
         position: "fixed",
@@ -29,12 +30,18 @@ function DefaultTransition() {
 function AboutTransition() {
   const panels = [
     { color: "#00184c", top: "-12vh", left: "-18vw", width: "86vw", delay: 0 },
-    { color: "#53edff", top: "24vh", left: "-10vw", width: "72vw", delay: 0.05 },
+    {
+      color: "#53edff",
+      top: "24vh",
+      left: "-10vw",
+      width: "72vw",
+      delay: 0.05,
+    },
     { color: "#ffffff", top: "58vh", left: "-14vw", width: "82vw", delay: 0.1 },
   ];
 
   return panels.map((panel, i) => (
-    <motion.div
+    <MotionDiv
       key={i}
       style={{
         position: "fixed",
@@ -60,7 +67,6 @@ function AboutTransition() {
   ));
 }
 
-
 function SocialsTransition() {
   const stripes = [
     { color: "#00184c", left: "72vw", width: "24vw", delay: 0 },
@@ -69,7 +75,7 @@ function SocialsTransition() {
   ];
 
   return stripes.map((stripe, i) => (
-    <motion.div
+    <MotionDiv
       key={i}
       style={{
         position: "fixed",
@@ -110,7 +116,7 @@ function ResumeTransition() {
   ];
 
   return cards.map((card, i) => (
-    <motion.div
+    <MotionDiv
       key={i}
       style={{
         position: "fixed",
@@ -140,17 +146,17 @@ export default function PageTransition({ children, variant = "default" }) {
 
   return (
     <AnimatePresence mode="wait">
-      <motion.div key={location.pathname} style={{ position: "relative" }}>
+      <MotionDiv key={location.pathname} style={{ position: "relative" }}>
         <TransitionOverlay variant={variant} />
-        <motion.div
+        <MotionDiv
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2, delay: 0.18 }}
         >
           {children}
-        </motion.div>
-      </motion.div>
+        </MotionDiv>
+      </MotionDiv>
     </AnimatePresence>
   );
 }

@@ -141,7 +141,7 @@ export default function Socials({ src = defaultBgVideo }) {
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [active, navigate, focus]);
+  }, [active, activeInfoBar, navigate, focus]);
 
   return (
     <div id="menu-screen">
